@@ -1,0 +1,11 @@
+{
+  "firebase": {
+    "apiKey": "AIzaSyARFb0sU7lFTH5NlFdIRrtoF3fH4YyDnhQ",
+    "authDomain": "fluttershare-599a6.firebaseapp.com",
+    "databaseURL": "https://fluttershare-599a6.firebaseio.com",
+    "projectId": "fluttershare-599a6",
+    "storageBucket": "fluttershare-599a6.appspot.com",
+    "messagingSenderId": "370468358243",
+    "appId": "1:370468358243:web:4797ca075c740643d45056"
+  }
+}
