@@ -1,10 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {useAppUser} from '../contexts/UserContext';
-import ForgotPassword from '../screens/forgot-password/ForgotPassword';
+
 import Home from '../screens/home/Home';
-import SignIn from '../screens/signin/SignIn';
-import SignUp from '../screens/signup/SignUp';
+
+import SignUp from '../screens/auth/signup/SignUp';
+import SignIn from '../screens/auth/signin/SignIn';
+import ForgotPassword from '../screens/auth/forgot-password/ForgotPassword';
 
 const Routes = () => {
   const user = useAppUser().fireUser;

@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import {Alert, Button, Form, Spinner} from 'react-bootstrap';
 import {useHistory} from 'react-router';
-import {Link} from 'react-router-dom';
-import {useAppUser} from '../../contexts/UserContext';
-import {authError} from '../../shared/validation/Validation';
-import './SignUpStyles.scss';
+import {useAppUser} from '../../../contexts/UserContext';
+import {authError} from '../../../shared/validation/Validation';
 
-const SignUp = () => {
+const ForgotPassword = () => {
   const history = useHistory();
   const {signUp} = useAppUser();
   const [state, setState] = useState({
@@ -62,7 +60,7 @@ const SignUp = () => {
     <div className="sign-up-global-container">
       <div className="card login-form">
         <div className="card-body">
-          <h3 className="card-title text-center">Sign in Scrapbook</h3>
+          <h3 className="card-title text-center">Recovery email</h3>
           <div className="card-text">
             {state.hasError && (
               <Alert variant="danger" className="text-center">
@@ -86,43 +84,13 @@ const SignUp = () => {
                   onFocus={resetError}
                 />
               </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="exampleInputPassword1">
-                  Password
-                </Form.Label>
-
-                <Form.Control
-                  type="password"
-                  name="password"
-                  className="form-control form-control-sm"
-                  id="exampleInputPassword1"
-                  onChange={inputChangeHandler}
-                  value={state.password}
-                  onFocus={resetError}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="exampleInputPassword2">
-                  Confirm Password
-                </Form.Label>
-
-                <Form.Control
-                  type="password"
-                  name="confirmPassword"
-                  className="form-control form-control-sm"
-                  id="exampleInputPassword2"
-                  onChange={inputChangeHandler}
-                  value={state.confirmPassword}
-                  onFocus={resetError}
-                />
-              </Form.Group>
 
               <Button
                 type="submit"
                 className="btn btn-primary btn-block"
                 onClick={sumbitHandler}
               >
-                Sign up{' '}
+                Send recovery email{' '}
                 {state.loading && (
                   <Spinner
                     as="span"
@@ -133,9 +101,6 @@ const SignUp = () => {
                   />
                 )}
               </Button>
-              <div className="sign-up">
-                Have an account? <Link to="/signin">Sign In</Link>
-              </div>
             </Form>
           </div>
         </div>
@@ -144,4 +109,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ForgotPassword;

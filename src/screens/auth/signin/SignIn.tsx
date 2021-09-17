@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {Alert, Button, Form, Spinner} from 'react-bootstrap';
 import {Link, useHistory} from 'react-router-dom';
-import {useAppUser} from '../../contexts/UserContext';
-import {authError} from '../../shared/validation/Validation';
+import {useAppUser} from '../../../contexts/UserContext';
+import {authError} from '../../../shared/validation/Validation';
+
 import './SignInStyles.scss';
 
 const SignIn = () => {
