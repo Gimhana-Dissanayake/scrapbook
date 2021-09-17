@@ -3,6 +3,7 @@ import {preloadFirestore, SuspenseWithPerf} from 'reactfire';
 import './App.css';
 import {UserProvider} from './contexts/UserContext';
 import Routes from './routes/Routes';
+import './screens/default.scss';
 
 function App() {
   preloadFirestore({
