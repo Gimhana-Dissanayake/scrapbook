@@ -10,6 +10,11 @@ function App() {
       firestore().enablePersistence({synchronizeTabs: true}),
   });
 
+  // preloadFirestore({
+  //   setup: (firestore) =>
+  //     firestore().enablePersistence({synchronizeTabs: true}),
+  // });
+
   return (
     <SuspenseWithPerf
       fallback={<div>loading...</div>}

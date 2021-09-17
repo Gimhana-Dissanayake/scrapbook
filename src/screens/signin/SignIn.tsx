@@ -33,10 +33,10 @@ const SignIn = () => {
       const user = await signIn(state.email, state.password);
 
       setCurrentUser(user);
-      setState((pS) => ({
-        ...pS,
-        loading: false,
-      }));
+      // setState((pS) => ({
+      //   ...pS,
+      //   loading: false,
+      // }));
     } catch (e) {
       console.log('error', e);
       setState((pS) => ({
