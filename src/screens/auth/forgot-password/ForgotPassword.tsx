@@ -1,18 +1,16 @@
 import React, {useState} from 'react';
 import {Alert, Button, Form, Spinner} from 'react-bootstrap';
-import {useHistory} from 'react-router';
+import {Link} from 'react-router-dom';
 import {useAppUser} from '../../../contexts/UserContext';
 import {authError} from '../../../shared/validation/Validation';
 
 const ForgotPassword = () => {
-  const history = useHistory();
-  const {signUp} = useAppUser();
+  const {resetPassword} = useAppUser();
   const [state, setState] = useState({
     loading: false,
     hasError: '',
+    message: '',
     email: '',
-    password: '',
-    confirmPassword: '',
   });
 
   const inputChangeHandler = (e: any) => {
@@ -23,6 +21,7 @@ const ForgotPassword = () => {
     setState((pS) => ({
       ...pS,
       hasError: '',
+      message: '',
     }));
   };
 
@@ -33,18 +32,13 @@ const ForgotPassword = () => {
     }));
     e.preventDefault();
 
-    if (state.password !== state.confirmPassword) {
+    try {
+      await resetPassword(state.email);
       setState((pS) => ({
         ...pS,
         loading: false,
-        hasError: "Passwords don't match",
+        message: 'Check your email and proceed accordingly',
       }));
-      return;
-    }
-
-    try {
-      await signUp(state.email, state.password);
-      history.push('/');
     } catch (e: any) {
       console.log(e);
 
@@ -68,11 +62,20 @@ const ForgotPassword = () => {
               </Alert>
             )}
 
+            {state.message && (
+              <Alert variant="success" className="text-center">
+                {state.message}
+              </Alert>
+            )}
+
             <Form>
               <Form.Group>
                 <Form.Label htmlFor="exampleInputEmail1">
                   Email address
                 </Form.Label>
+                <Link to="/signin" style={{float: 'right', fontSize: 12}}>
+                  Sign In
+                </Link>
                 <Form.Control
                   type="email"
                   name="email"

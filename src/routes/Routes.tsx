@@ -7,6 +7,7 @@ import Home from '../screens/home/Home';
 import SignUp from '../screens/auth/signup/SignUp';
 import SignIn from '../screens/auth/signin/SignIn';
 import ForgotPassword from '../screens/auth/forgot-password/ForgotPassword';
+import Loader from '../shared/ui/Loader';
 
 const Routes = () => {
   const user = useAppUser().fireUser;
@@ -31,7 +32,7 @@ const Routes = () => {
 
   return (
     <Router>
-      {user === null ? unAuth : user !== undefined ? auth : <></>}
+      {user === null ? unAuth : user !== undefined ? auth : <Loader />}
     </Router>
   );
 };

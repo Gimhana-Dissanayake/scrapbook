@@ -7,6 +7,7 @@ export interface UserContext {
   setCurrentUser: (user: firebase.User | null) => void;
   signUp: (email: string, password: string) => Promise<firebase.User | null>;
   signIn: (email: string, password: string) => Promise<firebase.User | null>;
+  resetPassword: (email: string) => Promise<firebase.User | null>;
   logOut: () => Promise<any>;
 }
 
@@ -19,6 +20,7 @@ const initialContext: UserContext = {
   setCurrentUser: (user: firebase.User | null) => {},
   signUp: (email: string, password: string): any => {},
   signIn: (email: string, password: string): any => {},
+  resetPassword: (email: string): any => {},
   logOut: (): any => {},
 };
 
@@ -40,15 +42,19 @@ export const UserProvider: FC = ({children}) => {
     return (await auth.signInWithEmailAndPassword(email, password)).user;
   };
 
+  const logOut = async (): Promise<any> => {
+    auth.signOut();
+  };
+
+  const resetPassword = async (email: string): Promise<any> => {
+    return auth.sendPasswordResetEmail(email);
+  };
+
   const setCurrentUser = (user: firebase.User | null) => {
     setState((pS) => ({
       ...pS,
       fireUser: user,
     }));
-  };
-
-  const logOut = async (): Promise<any> => {
-    auth.signOut();
   };
 
   useEffect(() => {
@@ -61,7 +67,7 @@ export const UserProvider: FC = ({children}) => {
 
   return (
     <Context.Provider
-      value={{...state, setCurrentUser, signUp, signIn, logOut}}
+      value={{...state, setCurrentUser, signUp, signIn, resetPassword, logOut}}
     >
       {children}
     </Context.Provider>

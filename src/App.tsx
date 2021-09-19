@@ -4,6 +4,7 @@ import './App.css';
 import {UserProvider} from './contexts/UserContext';
 import Routes from './routes/Routes';
 import './screens/default.scss';
+import Loader from './shared/ui/Loader';
 
 function App() {
   preloadFirestore({
@@ -17,10 +18,7 @@ function App() {
   // });
 
   return (
-    <SuspenseWithPerf
-      fallback={<div>loading...</div>}
-      traceId={'load-application'}
-    >
+    <SuspenseWithPerf fallback={<Loader />} traceId={'load-application'}>
       <UserProvider>
         <Routes />
       </UserProvider>
